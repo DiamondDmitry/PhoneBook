@@ -3,24 +3,29 @@
 public class Program
 {
     private static PhoneBook.PhoneBook _phoneBook;
-    
+
     static void Main(string[] args)
     {
         _phoneBook = new PhoneBook.PhoneBook();
-        
+
         Console.OutputEncoding = Encoding.UTF8;
         bool isRunning = true;
+        
+        _phoneBook.LoadBook();
+
         while (isRunning)
         {
+            Console.WriteLine();
             Console.WriteLine("1. Добавить контакт");
             Console.WriteLine("2. Просмотреть контакты");
             Console.WriteLine("3. Обновить контакт");
             Console.WriteLine("4. Удалить контакт");
             Console.WriteLine("5. Поиск контакта");
-            Console.WriteLine("6. Сохранить книгу");
-            Console.WriteLine("7. Выйти");
+            //Console.WriteLine("6. Сохранить книгу");
+            //Console.WriteLine("7. Загрузить книгу");
+            Console.WriteLine("0. Выйти");
 
-            int choice = Convert.ToInt32(Console.ReadLine());
+            byte.TryParse(Console.ReadLine(), out byte choice);
 
             switch (choice)
             {
@@ -39,10 +44,14 @@ public class Program
                 case 5:
                     _phoneBook.SearchContact();
                     break;
-                case 6:
+                //case 6:
+                //    _phoneBook.SaveBook();
+                //    break;
+                //case 7:
+                //    _phoneBook.LoadBook();
+                //    break;
+                case 0:
                     _phoneBook.SaveBook();
-                    break;
-                case 7:
                     isRunning = false;
                     break;
                 default:
