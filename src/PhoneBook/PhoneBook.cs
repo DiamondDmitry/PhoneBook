@@ -140,16 +140,19 @@ public class PhoneBook
     public void LoadBook()
     {
         // Загрузка контактов из файла contacts.txt
-        using (StreamReader reader = new StreamReader("contacts.txt"))
-        {
-            while (!reader.EndOfStream)
+        if (File.Exists("contacts.txt"))
+        { 
+            using (StreamReader reader = new StreamReader("contacts.txt"))
             {
-                Contact contact = new Contact();
-                string[] fieldsContact = reader.ReadLine().Split(',');
-                contact.FirstName = fieldsContact[0];
-                contact.LastName = fieldsContact[1];
-                contact.PhoneNumber = fieldsContact[2];
-                Contacts.Add(contact);
+                while (!reader.EndOfStream)
+                {
+                    Contact contact = new Contact();
+                    string[] fieldsContact = reader.ReadLine().Split(',');
+                    contact.FirstName = fieldsContact[0];
+                    contact.LastName = fieldsContact[1];
+                    contact.PhoneNumber = fieldsContact[2];
+                    Contacts.Add(contact);
+                }
             }
         }
     }
